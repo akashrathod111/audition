@@ -1,0 +1,27 @@
+10.)	xxx_app->config->database.php give 'give db name','user name','password'.
+11.)	if you want to use jtw and all other composer package then you have to use this commend (composer update), if in your system there is no composer then you have to first install composer.
+12.)	Now Exp_Controller use this as extends in controller.
+13.)	use \Firebase\JWT\JWT; use this line in every controller if you want to use JWT
+	$tokenId = base64_encode(mcrypt_create_iv(32));
+            $issuedAt = time();
+            $notBefore = $issuedAt; //Adding 10 seconds
+            $expire = $notBefore + 5184000; // Adding 60 Days
+            $serverName = 'marketplace';
+            $data = [
+                'iat' => $issuedAt, // Issued at: time when the token was generated
+                'jti' => $tokenId, // Json Token Id: an unique identifier for the token
+                'iss' => $serverName, // Issuer
+                'nbf' => $notBefore, // Not before
+                'exp' => $expire, // Expire
+                'data' => [ // Data related to the signer user
+                    'id' => $result['user_id'],
+                    'mobile' => $result['user_phone'],
+                    'email' => $result['user_email'],
+                ],
+            ];
+
+            $jwt = JWT::encode(
+                $data,
+                JWT_KEY,
+                'HS512'
+            );

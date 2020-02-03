@@ -1,0 +1,14 @@
+{
+    "require": {
+        "firebase/php-jwt": "^3.0",
+		"illuminate/database": "5.0.28",
+        "guzzlehttp/guzzle": "^5.3"
+    },
+	"autoload":
+	{
+		"classmap": 
+		[
+			"application/models"
+		]
+	}
+}
